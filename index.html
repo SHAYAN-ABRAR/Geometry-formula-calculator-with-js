@@ -77,26 +77,26 @@
                 </div>
 
                 <div>
-                    <!-- triangle card -->
+                    <!-- pentagon card -->
                     <div class="card w-96 bg-base-100 shadow-xl">
-                        <figure><img src="images/triangle.png" alt="Shoes" /></figure>
+                        <figure><img src="images/pentagon.png" alt="Shoes" /></figure>
                         <div class="card-body">
-                            <h2 class="card-title">Triangle</h2>
-                            <p class="text-center">Area (A) = 0.5 x b x h</p>
+                            <h2 class="card-title">Pentagon</h2>
+                            <p class="text-center">Area (A) = 0.5 x p x m</p>
                             <div>
-                                <input id="triangle-base" class="w-24 text-2xl p-2 border-2 border-gray-500 rounded-lg"
-                                    type="text" placeholder="b">
+                                <input id="pentagon-perimeter" class="w-24 text-2xl p-2 border-2 border-gray-500 rounded-lg"
+                                    type="text" placeholder="p">
                                 <span class="mr-4 ml-2">cm</span>
-                                <input id="triangle-height"
+                                <input id="pentagon-apothem"
                                     class="w-24 text-2xl p-2 border-2 border-gray-500 rounded-md" type="text"
-                                    placeholder="h">
+                                    placeholder="a">
                                 <span>cm</span>
                             </div>
                             <div>
-                                <p class="text-2xl">Area: <span id="triangle-area"></span></span> cm<sup>2</sup></p>
+                                <p class="text-2xl">Area: <span id="pentagon-area"></span></span> cm<sup>2</sup></p>
                             </div>
                             <div class="card-actions justify-end">
-                                <button onclick="calculateTriangleArea()"
+                                <button onclick="calculatePentagonArea()"
                                     class="btn btn-primary w-full">Calculate</button>
                             </div>
                         </div>
@@ -143,6 +143,7 @@
     </main>
     <script src="scripts/triangle.js"></script>
     <script src="scripts/rectangle.js"></script>
+    <script src="scripts/pentagon.js"></script>
 </body>
 
 </html>
