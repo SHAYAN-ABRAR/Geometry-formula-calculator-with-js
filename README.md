@@ -1,66 +1,74 @@
 # Geometry Area Calculator
 
-A small, responsive web app that calculates the area of common 2D shapes. You enter the dimensions and each card shows its result in cm² instantly, using plain JavaScript.
+Enter a shape's dimensions, click **Calculate** and see its area in square centimeters.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20site-4F00FF?style=for-the-badge&logo=githubpages&logoColor=white)](https://shayan-abrar.github.io/Geometry-formula-calculator-with-js/) <!-- live-demo -->
+**Live page:** <https://shayan-abrar.github.io/Geometry-formula-calculator-with-js/>
 
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
-![DaisyUI](https://img.shields.io/badge/DaisyUI-5A0EF8?style=flat-square&logo=daisyui&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+<p align="center">
+  <img src="screenshots/preview.png" width="800" alt="Calculator cards for a triangle, a rectangle and a pentagon showing computed areas of 40, 60 and 60 square centimeters, next to an Area Calculation panel">
+</p>
 
-![Geometry Area Calculator with sample results](screenshots/preview.png)
+Checking a textbook area formula usually means reaching for a calculator and the formula at the same time. This page puts both on one card for each shape: the formula, two inputs and a result line. The logic is a few small vanilla JavaScript functions, which makes it an easy example of reading input values and writing results back to the page.
 
-## Supported Shapes
+## Quick Start
 
-| Shape | Formula | Inputs |
+```bash
+git clone https://github.com/SHAYAN-ABRAR/Geometry-formula-calculator-with-js.git
+cd Geometry-formula-calculator-with-js
+python3 -m http.server 8000
+```
+
+Open <http://localhost:8000>. On Windows, use `python` instead of `python3`. Opening `index.html` directly in a browser works too. Tailwind CSS and DaisyUI load from CDNs, so you need an internet connection for the styling.
+
+## Features
+
+| Shape | Formula on the card | Inputs |
 | --- | --- | --- |
 | Triangle | A = 0.5 × b × h | base, height |
 | Rectangle | A = W × L | width, length |
 | Pentagon | A = 0.5 × p × a | perimeter, apothem |
 
-## Features
+- **One card per shape:** an illustration, the formula, two inputs in centimeters and a **Calculate** button.
+- **Decimal input:** values are read with `parseFloat`, so 12.5 × 4 gives 50.
+- **Shared helpers:** `scripts/pentagon.js` reads inputs and writes results through two small reusable functions.
+- **Responsive grid:** the cards sit in a two-column grid on wider screens (`md:grid-cols-2`) and a single column on phones.
 
-- Card-based layout with a shape illustration, its formula and labelled inputs
-- One-click **Calculate** button per shape, with the result rendered inline as `Area: … cm²`
-- Decimal support: inputs are parsed with `parseFloat`
-- Responsive grid built with Tailwind CSS and DaisyUI card components
+## Usage Example
+
+To find the area of a triangle with a 10 cm base and an 8 cm height, type `10` and `8` into the triangle card and click **Calculate**. The card shows `Area: 40 cm²`.
+
+The pentagon function shows the pattern the other shapes follow:
+
+```js
+function calculatePentagonArea(){
+    const perimeter=getInputValueById('pentagon-perimeter')
+    const apothem=getInputValueById('pentagon-apothem');
+    const area=0.5*perimeter*apothem;
+    setInnerTextById('pentagon-area',area);
+}
+```
+
+## Limitations
+
+- Empty or non-numeric input shows `NaN` instead of an error message.
+- The fourth card is a copy of the triangle card with the same element IDs, so its button recalculates the first triangle card and shows nothing on its own card.
+- The **Area Calculation** panel on the right is only a heading, and the ellipse, rhombus and parallelogram images in `images/` aren't used yet.
+- The pentagon formula is written with `m`, while its input is labeled `a` (apothem).
 
 ## Tech Stack
 
-| Layer | Technology |
-| --- | --- |
-| Markup | HTML5 |
-| Styling | Tailwind CSS (Play CDN), DaisyUI 4 |
-| Logic | Vanilla JavaScript (one script per shape) |
+- HTML5
+- Tailwind CSS (Play CDN) and DaisyUI 4.7.2 cards and buttons
+- Vanilla JavaScript: one script per shape in `scripts/`
 
-## Project Structure
+## Contributing
 
-```text
-Geometry-formula-calculator-with-js/
-├── index.html
-├── scripts/
-│   ├── triangle.js     # calculateTriangleArea()
-│   ├── rectangle.js    # calculateRectangleArea()
-│   └── pentagon.js     # calculatePentagonArea() + shared input/output helpers
-├── images/             # Shape illustrations
-└── tailwind.config.js
-```
+Suggestions and bug reports are welcome. Please [open an issue](https://github.com/SHAYAN-ABRAR/Geometry-formula-calculator-with-js/issues). Please read the license note below before reusing any code.
 
-## Run Locally
+## License
 
-```bash
-git clone https://github.com/SHAYAN-ABRAR/Geometry-formula-calculator-with-js.git
-cd Geometry-formula-calculator-with-js
-# Open index.html in a browser
-```
+This repository doesn't have a license yet, so it doesn't grant anyone permission to reuse or redistribute its code or images. Please ask before reusing any part of it.
 
-## What I Learned
+---
 
-- Reading input values and writing results back to the DOM
-- Refactoring repeated logic into reusable helpers (`getInputValueById`, `setInnerTextById`)
-- Laying out responsive card grids with Tailwind CSS
-
-## Author
-
-**Shayan Abrar** · [GitHub](https://github.com/SHAYAN-ABRAR) · [LinkedIn](https://www.linkedin.com/in/shayan-abrar/) · [Portfolio](https://shayan-abrar.vercel.app)
+Built by **Shayan Abrar** · [GitHub](https://github.com/SHAYAN-ABRAR) · [LinkedIn](https://www.linkedin.com/in/shayan-abrar/)
